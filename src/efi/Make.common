@@ -1,4 +1,4 @@
-#
+
 # Make.common
 # Common make rules for building with gnu-efi
 #
@@ -9,12 +9,12 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 # This file contains make definitions common to several (or all) of the make
-# files in the Next Loader code subdirectories. Some options are specific to
+# files in the RefindPlus code subdirectories. Some options are specific to
 # particular architectures or build systems and others are more universal.
 
 #
 # Environment definitions -- where stuff is and what sort of system is being
-# used to compile Next Loader....
+# used to compile RefindPlus....
 #
 
 EFIINC          = /usr/include/efi
@@ -34,14 +34,6 @@ ARCH            ?= $(HOSTARCH)
 # Note: TIANOBASE is defined in master Makefile and exported
 GENFW           = $(TIANOBASE)/BaseTools/Source/C/bin/GenFw
 prefix          = /usr/bin/
-
-CC            = $(prefix)gcc
-AS            = $(prefix)as
-LD            = $(prefix)ld
-AR            = $(prefix)ar
-RANLIB        = $(prefix)ranlib
-OBJCOPY       = $(prefix)objcopy
-
 ifeq ($(ARCH),aarch64)
   CC            = $(prefix)aarch64-linux-gnu-gcc
   AS            = $(prefix)aarch64-linux-gnu-as
@@ -49,15 +41,13 @@ ifeq ($(ARCH),aarch64)
   AR            = $(prefix)aarch64-linux-gnu-ar
   RANLIB        = $(prefix)aarch64-linux-gnu-ranlib
   OBJCOPY       = $(prefix)aarch64-linux-gnu-objcopy
-endif
-
-ifeq ($(ARCH),ia32)
-  CC            = $(prefix)i686-w64-mingw32-gcc
-  AS            = $(prefix)i686-w64-mingw32-as
-  LD            = $(prefix)i686-w64-mingw32-ld
-  AR            = $(prefix)i686-w64-mingw32-ar
-  RANLIB        = $(prefix)i686-w64-mingw32-ranlib
-  OBJCOPY       = $(prefix)i686-w64-mingw32-objcopy
+else
+  CC            = $(prefix)gcc
+  AS            = $(prefix)as
+  LD            = $(prefix)ld
+  AR            = $(prefix)ar
+  RANLIB        = $(prefix)ranlib
+  OBJCOPY       = $(prefix)objcopy
 endif
 
 ifeq ($(MAKEWITH),TIANO)
@@ -74,18 +64,17 @@ OPTIMFLAGS      = -Os -fno-strict-aliasing
 CFLAGS          = $(OPTIMFLAGS) -fno-stack-protector -fshort-wchar -Wall
 
 # ...for GNU-EFI....
-GNUEFI_CFLAGS   = -fpic -I$(EFIINC) -I$(EFIINC)/$(ARCH) -I$(EFIINC)/protocol -I../include -I../loader -I../libeg -I../mok
+GNUEFI_CFLAGS   = -fpic -I$(EFIINC) -I$(EFIINC)/$(ARCH) -I$(EFIINC)/protocol -I../include -I../refind -I../libeg -I../mok
 
 # ...and for TianoCore....
 TIANO_INCLUDE_DIRS = -I $(TIANOBASE)/MdePkg \
                      -I $(TIANOBASE)/MdePkg/Include \
                      -I $(TIANOBASE)/MdeModulePkg/ \
                      -I $(TIANOBASE)/MdeModulePkg/Include \
-                     -I $(TIANOBASE)/MdeModulePkg/Bus \
                      -I $(TIANOBASE)/IntelFrameworkPkg/Include \
                      -I $(TIANOBASE)/MdePkg/Include/$(ARCHDIR) \
                      -I .. \
-                     -I ../loader \
+                     -I ../refind \
                      -I ../libeg \
                      -I ../include \
                      -I ../mok
@@ -103,8 +92,7 @@ GNUEFI_LIBS       = -lefi -lgnuefi $(shell $(CC) -print-libgcc-file-name)
 
 # ...and for TianoCore....
 ENTRYPOINT=efi_main
-TIANO_LDSCRIPT   = $(TIANOBASE)/BaseTools/Scripts/gcc4.9-ld-script
-#TIANO_LDSCRIPT  = /usr/local/UDK2014/MyWorkSpace/BaseTools/Scripts/gcc4.9-ld-script
+TIANO_LDSCRIPT   = $(TIANOBASE)/BaseTools/Scripts/GccBase.lds
 TIANO_LDFLAGS   = -nostdlib -n -q --gc-sections --script=$(TIANO_LDSCRIPT) \
                   --entry $(ENTRYPOINT) -u $(ENTRYPOINT) -m $(LD_CODE)
 
@@ -122,9 +110,9 @@ FORMAT_DRIVER   = --target=efi-bsdrv-$(ARCH)
 ifeq ($(ARCH),x86_64)
   GNUEFI_LDFLAGS += -znocombreloc -zdefs
 
-  ARCH_CFLAGS = -DEFIX64 -DEFI_FUNCTION_WRAPPER -m64 -mno-red-zone 
+  ARCH_CFLAGS = -DEFIX64 -DEFI_FUNCTION_WRAPPER -m64 -mno-red-zone
 ifeq ($(MAKEWITH),TIANO)
-  ARCH_CFLAGS += -mcmodel=large "-DEFIAPI=__attribute__((ms_abi))" 
+  ARCH_CFLAGS += -mcmodel=large "-DEFIAPI=__attribute__((ms_abi))"
 endif
   ARCHDIR = X64
   UC_ARCH = X64
@@ -136,7 +124,7 @@ ifeq ($(ARCH),ia32)
   GNUEFI_LDFLAGS += -znocombreloc -zdefs
 
   # In practice, cross-compiling filesystem drivers works, but not the main
-  # Next Loader binary....
+  # RefindPlus binary....
   ifeq ($(HOSTARCH),x86_64)
     GNUEFILIB := $(GNUEFILIB)32
     EFILIB    := $(EFILIB)32
@@ -147,7 +135,7 @@ ifeq ($(ARCH),ia32)
   ARCHDIR = Ia32
   UC_ARCH = IA32
   FILENAME_CODE = ia32
-  LD_CODE = i386pe
+  LD_CODE = elf_i386
 endif
 
 ifeq ($(ARCH), aarch64)
@@ -201,6 +189,6 @@ endif
 # utility rules
 
 #clean:
-#	rm -f $(TARGET) *~ *.so $(OBJS) *.efi *.obj loader_*.txt loader_*.dll *.lib
+#	rm -f $(TARGET) *~ *.so $(OBJS) *.efi *.obj refind_*.txt refind_*.dll *.lib
 
 # EOF
