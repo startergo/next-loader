@@ -14,7 +14,7 @@
 
 #
 # Environment definitions -- where stuff is and what sort of system is being
-# used to compile RefindPlus....
+# used to compile next-loader-new....
 #
 
 EFIINC          = /usr/include/efi
