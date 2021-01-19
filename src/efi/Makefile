@@ -18,8 +18,8 @@ EFILIB_DIR=EfiLib
 # Two possible locations for TianoCore toolkit:
 # TIANOBASE is used with "tiano" targets and
 # EDK2BASE is used with "edk2" targets
-export TIANOBASE=/usr/local/UDK2018/MyWorkSpace
-export EDK2BASE=/usr/local/edk2-vUDK2017
+export TIANOBASE=/usr/local/UDK2014/MyWorkSpace
+export EDK2BASE=/usr/local/edk2-vUDK2018
 
 # NOTE: Below is overridden for "tiano" targets
 -include $(EDK2BASE)/Conf/target.txt
@@ -40,7 +40,7 @@ ifneq ($(wildcard $(EDK2BASE)/*),)
 	@echo "Found $(EDK2BASE); building with TianoCore EDK2"
 	+make edk2
 else ifneq ($(wildcard $(TIANOBASE)/*),)
-	@echo "Found $(TIANOBASE); building with TianoCore UDK2018"
+	@echo "Found $(TIANOBASE); building with TianoCore UDK2014"
 	+make tiano
 else
 	@echo "Did not find $(EDK2BASE) or $(TIANOBASE); building with GNU-EFI"
@@ -54,7 +54,7 @@ ifneq ($(wildcard $(EDK2BASE)/*),)
 	@echo "Found $(EDK2BASE); building with TianoCore EDK2"
 	+make fs_edk2
 else ifneq ($(wildcard $(TIANOBASE)/*),)
-	@echo "Found $(TIANOBASE); building with TianoCore UDK2018"
+	@echo "Found $(TIANOBASE); building with TianoCore UDK2014"
 	+make fs_tiano
 else
 	@echo "Did not find $(EDK2BASE) or $(TIANOBASE); building with GNU-EFI"
@@ -67,7 +67,7 @@ ifneq ($(wildcard $(EDK2BASE)/*),)
 	@echo "Found $(EDK2BASE); building with TianoCore EDK2"
 	+make gptsync_edk2
 else ifneq ($(wildcard $(TIANOBASE)/*),)
-	@echo "Found $(TIANOBASE); building with TianoCore UDK2018"
+	@echo "Found $(TIANOBASE); building with TianoCore UDK2014"
 	+make gptsync_tiano
 else
 	@echo "Did not find $(EDK2BASE) or $(TIANOBASE); building with GNU-EFI"
