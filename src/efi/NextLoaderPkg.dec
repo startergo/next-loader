@@ -1,0 +1,8 @@
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = NextLoaderPkg
+  PACKAGE_GUID                   = 8d815383-bd60-419e-a7F9-d41a5657f85c
+  PACKAGE_VERSION                = 4.5.0
+
+[Includes]
+  ../StdLib/Include
