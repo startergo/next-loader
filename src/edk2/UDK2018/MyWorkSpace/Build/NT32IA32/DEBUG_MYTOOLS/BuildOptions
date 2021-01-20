@@ -1,0 +1,4 @@
+gCommandLineDefines: {'ARCH': 'IA32'}
+BuildOptionPcd: []
+Active Platform: /Users/g5/Documents/GitHub/next-loader/src/edk2/UDK2018/MyWorkSpace/Nt32Pkg/Nt32Pkg.dsc
+Flash Image Definition: /Users/g5/Documents/GitHub/next-loader/src/edk2/UDK2018/MyWorkSpace/Nt32Pkg/Nt32Pkg.fdf
