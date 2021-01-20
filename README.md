@@ -48,7 +48,7 @@ of the project and sharing your feedback with us to improve the development.
 
 ## Copyright
 - Copyright (c) 2017-2018 [Abdy Franco](http://abdyfran.co/)
-- Copyright (c) 2019-2021 [DAYO AKANJI] (https://www.dakanji.com)
+- Copyright (c) 2019-2021 [DAYO AKANJI](https://www.dakanji.com)
 - Copyright (c) 2012-2017 [Roderick W. Smith](http://www.rodsbooks.com/)
 - Copyright (c) 2009-2017 [Sveinbjorn Thordarson](http://sveinbjorn.org/)
 - Copyright (c) 2004-2012 [Intel Corporation](https://www.intel.com)
