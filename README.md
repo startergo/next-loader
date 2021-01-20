@@ -45,22 +45,10 @@ can work an add your code and then open a pull request.
 You can also contribute to the project as a Beta Tester, testing each new beta version or new features
 of the project and sharing your feedback with us to improve the development.
 
-### Donating to the Project
-If you don't have enough time, the equipment or enough knowledge to contribute in any of the ways
-mentioned above to the project, you can also donate hardware for our test bench build or donate any
-amount through PayPal or Bitcoin.
-
-##### Hardware we are looking for:
-- Sapphire Pulse Radeon RX 580
-- Nvidia GeForce GT 630 2GB (Flashed by MacVidCards)
-- HP EX900 M.2 120GB PCIe 3.0 x4 NVMe SSD (or similar)
-
-##### Donate any amount:
- - [PayPal](https://www.paypal.me/abdyfranco)
- - [Bitcoin](https://www.blockchain.com/btc/payment_request?address=1LMLf1JDouaeEwpUxsH6PpFptYM4LB7b9B) 
 
 ## Copyright
 - Copyright (c) 2017-2018 [Abdy Franco](http://abdyfran.co/)
+- Copyright (c) 2019-2021 [DAYO AKANJI] (https://www.dakanji.com)
 - Copyright (c) 2012-2017 [Roderick W. Smith](http://www.rodsbooks.com/)
 - Copyright (c) 2009-2017 [Sveinbjorn Thordarson](http://sveinbjorn.org/)
 - Copyright (c) 2004-2012 [Intel Corporation](https://www.intel.com)
